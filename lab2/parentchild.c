@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <sys/wait.h>
 
 int main(int argc, char **argv) {
   int pid; /* process id */
@@ -11,11 +12,12 @@ int main(int argc, char **argv) {
       break;
 
     default:
+      wait(NULL);
       printf("[Default block]Parent process with a pid of : %d\nChild pid of : %d\n", getpid(), pid);
       break;
 
     case -1:
-      perror("Fork erorr");
+      perror("Fork error");
       exit(1);
   } 
 
