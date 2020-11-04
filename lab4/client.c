@@ -40,7 +40,7 @@ int main(int argc, char** argv) {
   msg = "idk";
 
   if(send(socket_desc, msg, sizeof(msg), 0) < 0) {
-    printf("Send faied\n");
+    printf("Send failed\n");
     return 1;
   }
 

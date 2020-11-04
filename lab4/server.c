@@ -33,17 +33,18 @@ int main(int argc, char ** argv) {
   printf("Waiting for incoming connection\n");
   c = sizeof(struct sockaddr_in);
 
-  new_socket = accept(socket_desc, (struct sockaddr*)&client, (socklen_t*)&c);
-  if (new_socket < 0) {
-    printf("Connection failed\n");
-  }
-
   char *msg;
   new_socket = accept(socket_desc, (struct sockaddr*)&client, (socklen_t*)&c);
   while (new_socket) {
     printf("Connection accepted\n"); 
-    msg = "Msg from client\n";
+    // reply to client
+    msg = "Msg from server\n";
     write(new_socket, msg, strlen(msg));
+  }
+
+  if (new_socket < 0) {
+    printf("Connection failed\n");
+    return -1;
   }
   return 0;
 }
