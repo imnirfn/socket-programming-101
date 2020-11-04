@@ -49,6 +49,8 @@ int main(int argc, char** argv) {
   // this receives a reply from the server
   if (recv(socket_desc, server_reply, 2000, 0) < 0) {
     printf("Reply from server failed\n");
+    close(socket_desc);
+    return -1;
   }
 
   printf("Reply received from server: %s", server_reply);

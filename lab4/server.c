@@ -34,8 +34,7 @@ int main(int argc, char ** argv) {
   c = sizeof(struct sockaddr_in);
 
   char *msg;
-  new_socket = accept(socket_desc, (struct sockaddr*)&client, (socklen_t*)&c);
-  while (new_socket) {
+  while ((new_socket = accept(socket_desc, (struct sockaddr*)&client, (socklen_t*)&c))) {
     printf("Connection accepted\n"); 
     // reply to client
     msg = "Msg from server\n";
