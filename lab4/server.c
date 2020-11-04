@@ -45,5 +45,13 @@ int main(int argc, char ** argv) {
     printf("Connection failed\n");
     return -1;
   }
+  char *server_reply;
+  if (recv(socket_desc, server_reply, 2000, 0) < 0) {
+    printf("Reply from server failed\n");
+    close(socket_desc);
+    return -1;
+  }
+  printf("Reply received from server:\n");
+  puts(server_reply);
   return 0;
 }

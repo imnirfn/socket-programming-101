@@ -14,7 +14,6 @@ int main(int argc, char** argv) {
   // SOCK_DGRAM - datagram based (UDP), terminate after one reply
   socket_desc = socket(AF_INET, SOCK_STREAM, 0);
   char *ip = "192.168.0.105";
-  printf("socket_desc: %d\n", socket_desc);
   if ( socket_desc == -1) {
     printf("Socket error");
   }
@@ -36,7 +35,6 @@ int main(int argc, char** argv) {
   // to send data
   char *msg;
   char *server_reply;
-  server_reply = "test";
   msg = "idk";
 
   if(send(socket_desc, msg, sizeof(msg), 0) < 0) {
@@ -52,9 +50,9 @@ int main(int argc, char** argv) {
     close(socket_desc);
     return -1;
   }
+  printf("Reply received from server:\n");
+  puts(server_reply);
 
-  printf("Reply received from server: %s", server_reply);
-  close(socket_desc);
   return 0;
 }
 
