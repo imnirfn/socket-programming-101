@@ -24,7 +24,7 @@ int main(int argc, char** argv) {
   server.sin_addr.s_addr = inet_addr(ip);
   server.sin_family = AF_INET;
   // htons(), htonl - convert values between host & network byte order(big endian)
-  server.sin_port = htons(22);
+  server.sin_port = htons(8000);
 
   // connecting to remote server
   if (connect(socket_desc, (struct sockaddr *)&server, sizeof(server)) < 0) {
