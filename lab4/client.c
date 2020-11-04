@@ -1,3 +1,4 @@
+#include <unistd.h>
 #include <stdio.h>
 #include  <sys/socket.h>
 #include <arpa/inet.h>
@@ -34,6 +35,8 @@ int main(int argc, char** argv) {
   
   // to send data
   char *msg;
+  char *server_reply;
+  server_reply = "test";
   msg = "idk";
 
   if(send(socket_desc, msg, sizeof(msg), 0) < 0) {
@@ -43,6 +46,13 @@ int main(int argc, char** argv) {
 
   printf("Data sent\n");
 
+  // this receives a reply from the server
+  if (recv(socket_desc, server_reply, 2000, 0) < 0) {
+    printf("Reply from server failed\n");
+  }
+
+  printf("Reply received from server: %s", server_reply);
+  close(socket_desc);
   return 0;
 }
 
