@@ -1,3 +1,5 @@
+#include <unistd.h>
+#include <string.h>
 #include <stdio.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
@@ -36,6 +38,12 @@ int main(int argc, char ** argv) {
     printf("Connection failed\n");
   }
 
-  printf("Connection accepted\n");
+  char *msg;
+  new_socket = accept(socket_desc, (struct sockaddr*)&client, (socklen_t*)&c);
+  while (new_socket) {
+    printf("Connection accepted\n"); 
+    msg = "Msg from client\n";
+    write(new_socket, msg, strlen(msg));
+  }
   return 0;
 }
