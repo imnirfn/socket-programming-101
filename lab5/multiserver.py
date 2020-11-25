@@ -6,7 +6,7 @@ def threaded_client(conn):
     conn.send(str.encode("Welcome to the server!\n"))
     while True:
         data = conn.recv(2048)
-        reply = "[SERVER] " + data.decode('utf-8')
+        reply = 'Server says ' + data.decode('utf-8')
         
         if not data:
             break
@@ -14,8 +14,8 @@ def threaded_client(conn):
     conn.close()
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host = 'localhost'
-port = 8001
+host = ''
+port = 8002
 thread_count = 0
 
 try:

@@ -1,8 +1,8 @@
 import socket
 
-s = socket.socket()
-host = 'localhost'
-port = 8001
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+host = '192.168.0.104'
+port = 8002
 
 try:
     s.connect((host, port))
