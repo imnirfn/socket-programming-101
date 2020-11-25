@@ -6,26 +6,35 @@ def threaded_client(conn):
     conn.send(str.encode("Welcome to the server!\n"))
     while True:
         data = conn.recv(2048)
-        reply = "[SERVER] " + data.decode('UTF-8')
+        reply = "[SERVER] " + data.decode('utf-8')
         
         if not data:
             break
         conn.sendall(str.encode(reply))
     conn.close()
 
-if __name__ =="__main":
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    host = 'localhost'
-    port = 8000
-    thread_count = 0
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+host = 'localhost'
+port = 8001
+thread_count = 0
 
-    try:
-        s.bind((host, port))
-    except socket.error as e:
-        print(str(e))
+try:
+    s.bind((host, port))
+except socket.error as e:
+    print("Error here: ", str(e))
 
-    print("Waiting for connection..")
-    s.listen(5)
+print("Waiting for connection..")
+s.listen(5)
+
+while True:
+    client, addr = s.accept()
+    print("Connected to " + addr[0] + ":" + str(addr[1]))
+    start_new_thread(threaded_client, (client,))
+    thread_count += 1
+    print("Thread number: " + str(thread_count))
+
+s.close()
+
 
 
 
