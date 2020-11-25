@@ -5,30 +5,32 @@ import sys
 def upload():
     print("Hi\n")
 
-HOST = 'localhost'
-PORT = 8005
-BUFFER = 2048
+if __name__ == "__main__":
 
-print("Welcome to Devhouze's FTP server\n")
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    HOST = 'localhost'
+    PORT = 8005
+    BUFFER = 2048
 
-try:
-    s.bind((HOST, PORT))
-except socket.error as e:
-    print("Socket error: " + str(e))
+    print("Welcome to Devhouze's FTP server\n")
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-s.listen(5)
-client, addr = s.accept()
-print("Connected from " + str(addr))
+    try:
+        s.bind((HOST, PORT))
+    except socket.error as e:
+        print("Socket error: " + str(e))
 
-while True:
-    client.send(b'Connected')
-    data = client.recv(BUFFER)
+    s.listen(5)
+    client, addr = s.accept()
+    print("Connected from " + str(addr))
 
-    if data == 'upload':
-        upload()
-    data = None
-client.close()
+    while True:
+        client.send(b'Connected')
+        data = client.recv(BUFFER)
+
+        if data == 'upload':
+            upload()
+        data = None
+    client.close()
 
 
 

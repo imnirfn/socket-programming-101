@@ -3,7 +3,22 @@ import os
 import sys
 
 def upload(file_name):
-    print("dadsa")
+    print("Uploading file to server..")
+
+    # check if file exists
+    try:
+        data = open(file_name, "rb")
+    except:
+        print("Couldnt open file")
+        return
+    
+    # check connection with server
+    try:
+        s.send(b'upload')
+    except socket.error as e:
+        print("Connection error: " + str(e))
+        return
+
 
 if __name__ == "__main__":
 
