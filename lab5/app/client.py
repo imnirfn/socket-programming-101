@@ -36,7 +36,7 @@ if __name__ == "__main__":
     print("Welcome to Devhouze's FTP client\n")
 
     while True:
-        inp = input("cli > ").split()
+        inp, file= input("cli > ").split()
         if inp == "upload":
             upload(file)
 
