@@ -31,6 +31,7 @@ class server(object):
             'Accept: application/json'
         }
         response = requests.get(url)
+        print(response.text)
         return response.text
 
 if __name__ == '__main__':
