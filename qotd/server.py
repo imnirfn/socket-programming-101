@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import requests
 import socket
 import os
 from _thread import *
@@ -25,11 +26,16 @@ class server(object):
         client.close()
 
     def server(self):
-        return 'hi'
+        url = 'https://quotes.rest/qod?language=en'
+        headers = {
+            'Accept: application/json'
+        }
+        response = requests.get(url)
+        return response.text
 
 if __name__ == '__main__':
     try:
-        serve = server('0.0.0.0', 17)
+        serve = server('localhost', 13337)
         serve.listen() 
     except socket.error as e:
         print("Error here: ", str(e))

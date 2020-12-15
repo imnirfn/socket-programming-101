@@ -11,13 +11,13 @@ class client(object):
 
     def listenToServer(self):
         while True:
-            res = self.socket.recv(1024)
+            res = self.socket.recv(2048)
             if(res):
                 print(res.decode('utf-8'))
 
 if __name__ == '__main__':
     try:
-        conn = client('0.0.0.0', 17)
+        conn = client('localhost', 13337)
         conn.listenToServer()
     except socket.error as e:
         print("Error here: ", str(e))
